@@ -13,17 +13,25 @@ public class AccountManager {
 
     public void addAccount(int accNumber, String owner, double balance, double minimumBalance) {
         Account account = new SavingAccount(accNumber, owner, balance, minimumBalance);
-
-        if (numAccounts < maxAccounts) {
-            accountList[numAccounts] = account;
-            numAccounts++;
+        if (!isAccountInTheList(accNumber)) {
+            if (numAccounts < maxAccounts) {
+                accountList[numAccounts] = account;
+                numAccounts++;
+            } else {
+                System.out.println("Number of accounts is exceeded.");
+            }
         } else {
-            System.out.println("Number of accounts is exceeded.");
+            System.out.println("Account " + accNumber + " is already in the list.");
         }
     }
 
-    public int accNum() {
-        return accountList[0].getAccNumber();
+    public boolean isAccountInTheList(int accNumber) {
+        for (int i = 0; i < numAccounts; i++) {
+            if (accountList[i].getAccNumber() == accNumber) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String printAccountDetails(int accNumber) {
@@ -43,18 +51,9 @@ public class AccountManager {
     @Override
     public String toString() {
         return "AccountManager{" +
-                "accountList=" + Arrays.toString(accountList) +
+                "accountList=" + listAllAccounts() +
                 ", numAccounts=" + numAccounts +
                 ", maxAccounts=" + maxAccounts +
                 '}';
     }
 }
-
-//
-//        for (Account account : accountList) {
-//                if (account.getAccNumber() == accNumber) {
-//                accDetails = account.toString();
-//                } else {
-//                accDetails = "No such account found";
-//                }
-//                }

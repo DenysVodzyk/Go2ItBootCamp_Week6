@@ -1,7 +1,7 @@
 public abstract class Account {
-    private int accNumber;
-    private double balance;
-    private String owner;
+    protected int accNumber;
+    protected double balance;
+    protected String owner;
 
     public Account() {
     }
@@ -40,10 +40,8 @@ public abstract class Account {
 
     @Override
     public String toString() {
-        return "Account{" +
-                "accNumber=" + accNumber +
+        return "accNumber=" + accNumber +
                 ", balance=" + balance +
-                ", owner='" + owner + '\'' +
-                '}';
+                ", owner=" + owner;
     }
 }

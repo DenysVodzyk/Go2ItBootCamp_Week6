@@ -1,7 +1,6 @@
 public class SavingAccount extends Account {
     private double minimumBalance;
 
-
     public SavingAccount() {
     }
 
@@ -14,7 +13,7 @@ public class SavingAccount extends Account {
     public boolean withdraw(double amount) {
         double remainingBalance = super.getBalance() - amount;
         if (amount <= super.getBalance()) {
-            if (remainingBalance < getMinimumBalance()) {
+            if (remainingBalance + 1.5 < getMinimumBalance()) {
                 System.out.println("Extra charge of $1.5 will be applied to your account.");
                 super.setBalance(remainingBalance - 1.5);
             } else {
@@ -32,7 +31,7 @@ public class SavingAccount extends Account {
 
     @Override
     public String toString() {
-        return "SavingAccount{" + super.toString() + " " +
+        return "SavingAccount{" + super.toString() + ", " +
                 "minimumBalance=" + minimumBalance +
                 '}';
     }

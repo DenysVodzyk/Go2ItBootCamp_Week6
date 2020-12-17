@@ -11,12 +11,11 @@ public class SavingAccount extends Account {
 
     @Override
     public boolean withdraw(double amount) {
-        double remainingBalance = super.getBalance() - amount;
-        double fee = 1.5;
-        if (amount <= (super.getBalance() - fee)) {
+        if (amount <= (super.getBalance() - 1.5)) {
+            double remainingBalance = super.getBalance() - amount;
             if (amount > (getBalance() - getMinimumBalance())) {
                 System.out.println("Extra charge of $1.5 will be applied to your account.");
-                super.setBalance(remainingBalance - fee);
+                super.setBalance(remainingBalance - 1.5);
             } else {
                 super.setBalance(remainingBalance);
             }

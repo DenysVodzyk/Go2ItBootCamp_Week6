@@ -1,33 +1,32 @@
 import java.util.Arrays;
 
 public class AccountManager {
-    private Account[] accountList;
+    private Account[] accounts;
     private int numAccounts;
     private int maxAccounts;
 
     public AccountManager() {
         this.maxAccounts = 100;
         this.numAccounts = 0;
-        this.accountList = new Account[this.maxAccounts];
+        this.accounts = new Account[this.maxAccounts];
     }
 
-    public void addAccount(int accNumber, String owner, double balance, double minimumBalance) {
-        Account account = new SavingAccount(accNumber, owner, balance, minimumBalance);
-        if (!isAccountInTheList(accNumber)) {
+    public void addAccount(Account account) {
+        if (!isAccountInTheList(account.getAccNumber())) {
             if (numAccounts < maxAccounts) {
-                accountList[numAccounts] = account;
+                accounts[numAccounts] = account;
                 numAccounts++;
             } else {
                 System.out.println("Number of accounts is exceeded.");
             }
         } else {
-            System.out.println("Account " + accNumber + " is already in the list.");
+            System.out.println("Account " + account.getAccNumber() + " is already in the list.");
         }
     }
 
     public boolean isAccountInTheList(int accNumber) {
         for (int i = 0; i < numAccounts; i++) {
-            if (accountList[i].getAccNumber() == accNumber) {
+            if (accounts[i].getAccNumber() == accNumber) {
                 return true;
             }
         }
@@ -35,17 +34,16 @@ public class AccountManager {
     }
 
     public String printAccountDetails(int accNumber) {
-        String accDetails = "No such account found";
         for (int i = 0; i < numAccounts; i++) {
-            if (accountList[i].getAccNumber() == accNumber) {
-                accDetails = accountList[i].toString();
+            if (accounts[i].getAccNumber() == accNumber) {
+                return accounts[i].toString();
             }
         }
-        return accDetails;
+        return "No such account found";
     }
 
     public String listAllAccounts() {
-        return Arrays.toString(accountList);
+        return Arrays.toString(accounts);
     }
 
     @Override

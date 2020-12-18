@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SavingAccountTest {
 
@@ -16,7 +15,7 @@ public class SavingAccountTest {
     public void withdrawTest2() {
         Account savingAccountTest = new SavingAccount(1, "owner", 1000, 100);
         boolean resultTest = savingAccountTest.withdraw(999);
-        assertEquals(false, resultTest);
+        assertFalse(resultTest);
     }
 
 
